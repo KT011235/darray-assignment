@@ -5,7 +5,9 @@ int main() {
     int numElements = 1; //確保する要素数
     int *dynamicArray;
     // Allocate memory
-    dynamicArray = (int *)calloc(numElements, sizeof(int));
+    dynamicArray = (int*)malloc(sizeof(int) * 1);
+
+   // dynamicArray = (int *)calloc(numElements, sizeof(int));
 
     /*int *darray = (int *)malloc(n * sizeof(int));
     int *addr;

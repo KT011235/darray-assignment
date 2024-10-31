@@ -10,7 +10,7 @@
 
 struct darray {
   /* your attributes go here */
-  //int *dynamicArray;?
+  int *dynamicArray;
   size_t size;
 };
 
@@ -21,18 +21,14 @@ struct darray {
 darray *da_create() {
 
   int numElements = 1; //確保する要素数
-  int *dynamicArray;
   // Allocate memory
-  dynamicArray = (int *)calloc(numElements, sizeof(int));
-
-  /*int *darray = (int *)malloc(n * sizeof(int));
-  int *addr;
-  addr = (int*)malloc(4); */
+  darray *array = malloc(sizeof(darray)); // this is same as doing self._darray = [] in Python
+  array -> dynamicArray = calloc(numElements, sizeof(int));
 
   // If creation fails, return NULL
-  if (dynamicArray == NULL) {
+  if (array == NULL) {
     printf("Failed to allocate memory. \n");
-    return 1; // I get error when I try to return NULL here
+    return NULL; // I get error when I try to return NULL here
   }
 }
 
