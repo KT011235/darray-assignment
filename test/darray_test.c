@@ -27,5 +27,5 @@ int main(int argc, char **argv) {
 }
 
 struct darray {
-    stuff;
+    //stuff;
 }

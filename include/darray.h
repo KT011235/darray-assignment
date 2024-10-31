@@ -25,23 +25,7 @@ darray *da_create();
  * pointer to it. If the idx is out of range for the darray, return NULL
  * instead. If the provided array pointer is NULL, return NULL.
  */
-int *da_get(darray *array, size_t idx){
-
-    int *ptr;
-
-    /* If the array pointer is NULL, return NULL*/
-    if (array == NULL){
-        return NULL;
-    }
-    /* If the idx is out of range, return NULL*/
-    if (idx > (sizeof array)){
-        return NULL;
-    }
-    /* Return a pointer to the index*/
-    ptr = array;
-    return ptr[idx];
-
-}
+int *da_get(darray *array, size_t idx);
 
 /*
  * Increase the length of array by 1 and place value within the newly created

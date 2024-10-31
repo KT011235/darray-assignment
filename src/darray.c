@@ -10,6 +10,8 @@
 
 struct darray {
   /* your attributes go here */
+  //int *dynamicArray;?
+  size_t size;
 };
 
 /*
@@ -17,9 +19,22 @@ struct darray {
  * creation should fail, return NULL.
  */
 darray *da_create() {
- 
-}
 
+  int numElements = 1; //確保する要素数
+  int *dynamicArray;
+  // Allocate memory
+  dynamicArray = (int *)calloc(numElements, sizeof(int));
+
+  /*int *darray = (int *)malloc(n * sizeof(int));
+  int *addr;
+  addr = (int*)malloc(4); */
+
+  // If creation fails, return NULL
+  if (dynamicArray == NULL) {
+    printf("Failed to allocate memory. \n");
+    return 1; // I get error when I try to return NULL here
+  }
+}
 
 /*
  * Access the element stored at index idx within the darray and return a
@@ -27,7 +42,20 @@ darray *da_create() {
  * instead. If the provided array pointer is NULL, return NULL.
  */
 int *da_get(darray *array, size_t idx) {
- 
+  
+  int *ptr;
+
+  // If the array pointer is NULL, return NULL
+  if (array == NULL){
+      return NULL;
+  }
+  /* If the idx is out of range, return NULL*/
+  if (idx > (sizeof array)){
+      return NULL;
+  }
+  /* Return a pointer to the index*/
+  ptr = array;
+  return ptr[idx];
 }
 
 /*
@@ -36,7 +64,24 @@ int *da_get(darray *array, size_t idx) {
  * also if the provided array pointer is null.
  */
 int da_append(darray *array, int value) {
- 
+
+  // Change the length of array by 1
+  int newSize = 1;
+  int *array = realloc(array, newSize * sizeof(int)); // array = (int *) realloc(array, 1 * sizeof(int))?
+
+  // If succeed, place value within the newly created spot
+  if (array != NULL) {
+    int array[original_size + 1] = value; // I want to do something like this
+  }
+
+  // If fails or array pointer is null, return 0
+  else {
+    free(array);
+    return 0;
+  }
+
+  // Otherwise, return 1
+  return 1;  
 }
 
 /*
@@ -45,7 +90,14 @@ int da_append(darray *array, int value) {
  * which may be larger. If array is NULL, return 0.
  */
 size_t da_size(darray *array) {
- 
+
+  // If array is NULL, return 0
+  if (array == NULL) {
+    return 0;
+  }
+
+  //　Accessible size of the array
+  return (array -> size);
 }
 
 /*
@@ -53,5 +105,8 @@ size_t da_size(darray *array) {
  * nothing.
  */
 void da_delete(darray *array) {
- 
+
+  //free all the memory
+  free(array);
+  return 0;
 }
