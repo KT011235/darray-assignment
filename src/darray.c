@@ -63,17 +63,20 @@ int da_append(darray *array, int value) {
 
   // Change the length of array by 1
   int newSize = array->size + 1; // new_size = old_size + 1 (array->sizeは、darray構造体に格納されている今の配列の要素数)
-  int *newArray = realloc(array->dynamicArray, newSize * sizeof(int)); //メモリを再割り当てするのはdynamicArrayに対して
+  int *newArray = realloc((*array).dynamicArray, newSize * sizeof(int)); //メモリを再割り当てするのはdynamicArrayに対して
 
   // If operation fails, return 0
   if (newArray == NULL) {
     return 0;
   }
   // If succeed, place value within the newly created spot
-  (*array).dynamicArray[newSize] = value; // array[old_size+1]
+  (*array).dynamicArray[(*array).size] = value; // array[old_size+1]
+
+  // Update its size
+  (*array).size = newSize; // newSizeは、配列のインデックスではなく、新しいサイズ
 
   // Otherwise, return 1
-  return 1;  
+  return 1;
 }
 
 /*
