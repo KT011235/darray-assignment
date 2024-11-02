@@ -62,19 +62,15 @@ int *da_get(darray *array, size_t idx) {
 int da_append(darray *array, int value) {
 
   // Change the length of array by 1
-  int newSize = 1;
-  int *array = realloc(array, newSize * sizeof(int)); // array = (int *) realloc(array, 1 * sizeof(int))?
+  int newSize = array->size + 1; // new_size = old_size + 1 (array->sizeは、darray構造体に格納されている今の配列の要素数)
+  int *newArray = realloc(array->dynamicArray, newSize * sizeof(int)); //メモリを再割り当てするのはdynamicArrayに対して
 
-  // If succeed, place value within the newly created spot
-  if (array != NULL) {
-    int array[original_size + 1] = value; // I want to do something like this
-  }
-
-  // If fails or array pointer is null, return 0
-  else {
-    free(array);
+  // If operation fails, return 0
+  if (newArray == NULL) {
     return 0;
   }
+  // If succeed, place value within the newly created spot
+  (*array).dynamicArray[newSize] = value; // array[old_size+1]
 
   // Otherwise, return 1
   return 1;  
