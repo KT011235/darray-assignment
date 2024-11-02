@@ -70,10 +70,11 @@ int da_append(darray *array, int value) {
     return 0;
   }
   // If succeed, place value within the newly created spot
-  (*array).dynamicArray[(*array).size] = value; // array[old_size+1]
+  (*array).dynamicArray[(*array).size] = value; // array->dynamicArray[newSize]にすると配列のout of range
 
   // Update its size
   (*array).size = newSize; // newSizeは、配列のインデックスではなく、新しいサイズ
+  (*array).dynamicArray = newArray;
 
   // Otherwise, return 1
   return 1;
@@ -92,7 +93,7 @@ size_t da_size(darray *array) {
   }
 
   //　Accessible size of the array
-  return (array -> size);
+  return (array->size);
 }
 
 /*
