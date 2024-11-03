@@ -102,7 +102,12 @@ size_t da_size(darray *array) {
  */
 void da_delete(darray *array) {
 
+  // If array is NULL, do nothing
+  if (array == NULL) {
+    array ->dynamicArray;
+  }
   //free all the memory
-  free(array);
-  return 0;
+  else {
+    free(array);
+  }
 }
