@@ -25,7 +25,3 @@ int main(int argc, char **argv) {
 
     da_delete(array);
 }
-
-struct darray {
-    //stuff;
-}

@@ -7,6 +7,7 @@
  * Distributed under the Modified BSD License.
  */
 #include "darray.h"
+#include <stdio.h>
 
 struct darray {
   /* your attributes go here */
@@ -30,6 +31,7 @@ darray *da_create() {
     printf("Failed to allocate memory. \n");
     return NULL; // I get error when I try to return NULL here
   }
+  return array;
 }
 
 /*
@@ -38,8 +40,6 @@ darray *da_create() {
  * instead. If the provided array pointer is NULL, return NULL.
  */
 int *da_get(darray *array, size_t idx) {
-  
-  int *ptr;
 
   // If the array pointer is NULL, return NULL
   if (array == NULL){
@@ -49,9 +49,10 @@ int *da_get(darray *array, size_t idx) {
   if (idx > (sizeof array)){
       return NULL;
   }
+  
+  int *index = &(*array).dynamicArray[idx];
   /* Return a pointer to the index*/
-  ptr = array;
-  return ptr[idx];
+  return index;
 }
 
 /*
@@ -103,11 +104,10 @@ size_t da_size(darray *array) {
 void da_delete(darray *array) {
 
   // If array is NULL, do nothing
-  if (array == NULL) {
-    array ->dynamicArray;
-  }
-  //free all the memory
-  else {
+  if (array) {
+    // Free the pointer first
+    free((*array).dynamicArray);
+    //free all the memory
     free(array);
   }
 }
