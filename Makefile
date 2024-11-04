@@ -27,7 +27,7 @@ $(TARGET): build build/darray.o
 
 
 .PHONY: tests
-tests: LDLIBS += -lcheck -lsubunit
+tests: LDLIBS += -lcheck
 tests: test/darray_test.c
 	$(CC) $(CFLAGS) $(LDFLAGS) $(LDLIBS) test/darray_test.c $(TARGET) -o bin/tests/darray-tests
 
